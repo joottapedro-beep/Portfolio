@@ -24,20 +24,7 @@ function closeGallery(){document.getElementById('galleryOverlay').classList.remo
 function render(){const img=document.getElementById('galImg');img.style.opacity=0;img.src=cur.photos[idx];img.onload=()=>img.style.opacity=1;document.getElementById('galCounter').textContent=(idx+1)+' de '+cur.photos.length;const th=document.getElementById('galThumbs');th.innerHTML='';cur.photos.forEach((src,i)=>{const t=document.createElement('img');t.src=src;t.className='g-thumb'+(i===idx?' active':'');t.onclick=()=>{idx=i;render();};th.appendChild(t);});}
 function changePhoto(d){idx=(idx+d+cur.photos.length)%cur.photos.length;render();}
 document.addEventListener('keydown',e=>{if(!document.getElementById('galleryOverlay').classList.contains('open'))return;if(e.key==='ArrowRight')changePhoto(1);if(e.key==='ArrowLeft')changePhoto(-1);if(e.key==='Escape')closeGallery();});
-</script>
-  <!-- CV OVERLAY -->
-<div id="cvOverlay" style="position:fixed;inset:0;background:#fff;z-index:300;transform:translateX(100%);transition:transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94);display:flex;flex-direction:column;">
-  <div style="height:52px;display:flex;align-items:center;padding:0 32px;border-bottom:1px solid #e8e8ed;flex-shrink:0;gap:16px;">
-    <button onclick="closeCV()" style="display:flex;align-items:center;gap:8px;background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:13px;color:#6e6e73;padding:0;transition:color 0.2s;" onmouseover="this.style.color='#1d1d1f'" onmouseout="this.style.color='#6e6e73'">
-      ← Back to Website
-    </button>
-    <span style="font-size:12px;color:#d2d2d7;">|</span>
-    <span style="font-size:13px;color:#1d1d1f;font-weight:400;">Curriculum Vitae — João Pereira</span>
-  </div>
-  <iframe src="CV  16032026.pdf" style="flex:1;border:none;width:100%;"></iframe>
-</div>
 
-<script>
 function openCV(){
   document.getElementById('cvOverlay').style.transform='translateX(0)';
   document.body.style.overflow='hidden';
@@ -49,4 +36,3 @@ function closeCV(){
 document.addEventListener('keydown',function(e){
   if(e.key==='Escape') closeCV();
 });
-</script>
