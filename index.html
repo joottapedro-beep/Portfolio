@@ -1,260 +1,490 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
-<link rel="stylesheet" href="style.css">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>João Pereira</title>
-<link rel="icon" type="image/png" sizes="32x32" href="logoJP_3.png">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>João Pereira</title>
+  <meta
+    name="description"
+    content="João Pereira's portfolio featuring photography, projects, and contact information."
+  >
+  <link rel="icon" type="image/png" sizes="32x32" href="logoJP_3.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <header>
+    <a href="#" class="logo">João Pereira</a>
+    <nav aria-label="Main navigation">
+      <a href="#sobre">About</a>
+      <a href="#projetos">Projects</a>
+      <a href="#fotografia">Photography</a>
+      <a href="#contacto">Contact</a>
+      <a href="#" data-open-cv class="nav-cv">CV</a>
+    </nav>
+  </header>
 
-<header>
-  <a href="#" class="logo">João Pereira</a>
-  <nav>
-    <a href="#sobre">About</a>
-    <a href="#projetos">Projects</a>
-    <a href="#fotografia">Photography</a>
-    <a href="#contacto">Contacts</a>
-    <a href="#" onclick="openCV();return false;" class="nav-cv">CV</a>
-  </nav>
-</header>
-
-<section class="hero">
-  <div class="hero-bg-img"></div>
-  <div class="hero-content">
-    <div class="hero-chips">
-      <span class="chip">Aveiro, Portugal</span>
-      <span class="chip">Photography</span>
-      <span class="chip">Digital Marketing</span>
-      <span class="chip">Freelancer</span>
-      <span class="chip">Student</span>
-    </div>
-    <h1 class="hero-title">João<br><strong>Pereira</strong></h1>
-    <div class="hero-bottom">
-      <p class="hero-desc">Student and freelancer who enjoys photography, sports, cars, travel, and portraits. Focused on capturing moments naturally with attention to detail.</p>
-      <div class="hero-actions">
-        <a href="#fotografia" class="btn-dark">View Photographys</a>
-        <a href="#projetos" class="btn-outline">View projects</a>
-      </div>
-    </div>
-  </div>
-  <div class="scroll-hint">scroll</div>
-</section>
-
-<hr class="divider">
-
-<section id="sobre">
-  <div class="section-wrap">
-    <div class="about-grid">
-      <div class="reveal">
-        <img class="about-img" src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=700&q=85" alt="João Pereira">
-      </div>
-      <div class="about-text reveal rd2">
-        <div>
-          <p class="eyebrow">About Me</p>
-          <h2 class="sec-title">Student.<br>Freelancer.<br>Photographer.</h2>
+  <main>
+    <section class="hero">
+      <div class="hero-bg-img" aria-hidden="true"></div>
+      <div class="hero-content">
+        <div class="hero-chips" aria-label="Skills and profile highlights">
+          <span class="chip">Aveiro, Portugal</span>
+          <span class="chip">Photography</span>
+          <span class="chip">Digital Marketing</span>
+          <span class="chip">Freelancer</span>
+          <span class="chip">Student</span>
         </div>
-        <p class="sec-body">Working student exploring photography. I shoot sports, cars, travel, and portraits, with a natural style and attention to detail.</p>
-        <div class="about-tags">
-          <span class="tag">Photoshop</span>
-          <span class="tag">Canva</span>
-          <span class="tag">Figma</span>
-          <span class="tag">Premiere Pro</span>
-          <span class="tag">Digital Marketing</span>
-          <span class="tag">Digital Content</span>
-        </div>
-        <div class="about-stats">
-          <div class="stat-cell"><div class="stat-n">6+</div><div class="stat-l">Photo Sessions</div></div>
-          <div class="stat-cell"><div class="stat-n">4</div><div class="stat-l">Countries</div></div>
-          <div class="stat-cell"><div class="stat-n">2</div><div class="stat-l">Work Experience</div></div>
-        </div>
-        <div style="display:flex;gap:12px;flex-wrap:wrap;">
-          <a href="#" onclick="openCV();return false;" class="btn-dark">View CV</a>
-          <a href="#contacto" class="btn-outline">Contact</a>
+        <h1 class="hero-title">João<br><strong>Pereira</strong></h1>
+        <div class="hero-bottom">
+          <p class="hero-desc">
+            Student and freelancer who enjoys photography, sports, cars, travel,
+            and portraits. Focused on capturing moments naturally with attention
+            to detail.
+          </p>
+          <div class="hero-actions">
+            <a href="#fotografia" class="btn-dark">View Photography</a>
+            <a href="#projetos" class="btn-outline">View Projects</a>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+      <div class="scroll-hint">scroll</div>
+    </section>
 
-<hr class="divider">
+    <hr class="divider">
 
-<section class="projects-bg" id="projetos">
-  <div class="section-wrap">
-    <div class="projects-header reveal">
+    <section id="sobre">
+      <div class="section-wrap">
+        <div class="about-grid">
+          <div class="reveal">
+            <img
+              class="about-img"
+              src="fotos/profile/IMG_1069.jpeg"
+              alt="Portrait of João Pereira"
+              loading="lazy"
+            >
+          </div>
+          <div class="about-text reveal rd2">
+            <div>
+              <p class="eyebrow">About Me</p>
+              <h2 class="sec-title">Student.<br>Freelancer.<br>Photographer.</h2>
+            </div>
+            <p class="sec-body">
+              Working student exploring photography. I shoot sports, cars,
+              travel, and portraits, with a natural style and attention to
+              detail.
+            </p>
+            <div class="about-tags" aria-label="Tools and areas">
+              <span class="tag">Photoshop</span>
+              <span class="tag">Canva</span>
+              <span class="tag">Figma</span>
+              <span class="tag">Premiere Pro</span>
+              <span class="tag">Digital Marketing</span>
+              <span class="tag">Digital Content</span>
+            </div>
+            <div class="about-stats" aria-label="Experience highlights">
+              <div class="stat-cell">
+                <div class="stat-n">6+</div>
+                <div class="stat-l">Photo Sessions</div>
+              </div>
+              <div class="stat-cell">
+                <div class="stat-n">4</div>
+                <div class="stat-l">Countries</div>
+              </div>
+              <div class="stat-cell">
+                <div class="stat-n">2</div>
+                <div class="stat-l">Work Experience</div>
+              </div>
+            </div>
+            <div class="about-actions">
+              <a href="#" data-open-cv class="btn-dark">View CV</a>
+              <a href="#contacto" class="btn-outline">Contact</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <section class="projects-bg" id="projetos">
+      <div class="section-wrap">
+        <div class="projects-header reveal">
+          <div>
+            <p class="eyebrow">Selected Projects</p>
+            <h2 class="sec-title">Projects</h2>
+          </div>
+          <p class="sec-body projects-copy">
+            Click on each project to see photos and details.
+          </p>
+        </div>
+        <div class="projects-list reveal">
+          <button
+            class="project-row"
+            type="button"
+            data-project-target="p1"
+            aria-expanded="false"
+            aria-controls="p1"
+          >
+            <span class="proj-num">01</span>
+            <span class="proj-info">
+              <span class="proj-name">Marketing Associate - Moovflex</span>
+              <span class="proj-desc">
+                Content creation, client work, and support across different
+                areas at Moov.
+              </span>
+            </span>
+            <span class="proj-tags" aria-label="Project tags">
+              <span class="proj-tag">Startup</span>
+              <span class="proj-tag">Marketing</span>
+              <span class="proj-tag">UI/UX</span>
+              <span class="proj-tag">Business Development</span>
+              <span class="proj-tag">2025-present</span>
+            </span>
+            <span class="proj-arrow" aria-hidden="true">→</span>
+          </button>
+          <div class="proj-panel" id="p1" hidden>
+            <p class="proj-panel-text">
+              Responsible for producing photo and video content, assisting with
+              projects, and contributing to the brand's overall development.
+            </p>
+            <div class="proj-panel-imgs">
+              <img
+                src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=85"
+                alt="Sports campaign visual for Moovflex"
+                loading="lazy"
+              >
+              <img
+                src="https://images.unsplash.com/photo-1529900748604-07564a03e7a6?w=600&q=85"
+                alt="Fitness-focused marketing content for Moovflex"
+                loading="lazy"
+              >
+              <img
+                src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=600&q=85"
+                alt="Branded visual concept for Moovflex"
+                loading="lazy"
+              >
+            </div>
+          </div>
+
+          <button
+            class="project-row"
+            type="button"
+            data-project-target="p2"
+            aria-expanded="false"
+            aria-controls="p2"
+          >
+            <span class="proj-num">02</span>
+            <span class="proj-info">
+              <span class="proj-name">Marketing Intern - Biselarte</span>
+              <span class="proj-desc">
+                Content creation, market research, and support across different
+                areas.
+              </span>
+            </span>
+            <span class="proj-tags" aria-label="Project tags">
+              <span class="proj-tag">Marketing</span>
+              <span class="proj-tag">Newsletter</span>
+              <span class="proj-tag">Content</span>
+              <span class="proj-tag">2025</span>
+            </span>
+            <span class="proj-arrow" aria-hidden="true">→</span>
+          </button>
+          <div class="proj-panel" id="p2" hidden>
+            <p class="proj-panel-text">
+              Responsible for developing visual content, assisting with client
+              communication, analyzing pricing and competitors, and supporting
+              marketing activities.
+            </p>
+            <div class="proj-panel-imgs">
+              <img
+                src="fotos/biselarte/ft1.JPG"
+                alt="Visual content developed during the Biselarte internship"
+                loading="lazy"
+              >
+              <img
+                src="https://images.unsplash.com/photo-1502877338535-766e1452684a?w=600&q=85"
+                alt="Promotional campaign creative for Biselarte"
+                loading="lazy"
+              >
+              <img
+                src="https://images.unsplash.com/photo-1469285994282-454ceb49e63c?w=600&q=85"
+                alt="Branding material developed during the internship"
+                loading="lazy"
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <section id="fotografia">
+      <div class="section-wrap section-wrap-tight">
+        <div class="reveal">
+          <p class="eyebrow">Photography Portfolio</p>
+          <h2 class="sec-title">Photo Sessions</h2>
+        </div>
+      </div>
+      <div class="photo-grid reveal">
+        <button class="photo-card normal" type="button" data-gallery="caramulo">
+          <img
+            src="fotos/caramulo/IMG_4634%20(1).JPG"
+            alt="Car photography at Caramulo"
+            loading="lazy"
+          >
+          <span class="photo-info">
+            <span class="photo-meta">
+              <span class="photo-cat">Cars</span>
+              <span class="photo-name">Caramulo</span>
+              <span class="photo-year">2025</span>
+            </span>
+            <span class="photo-open" aria-hidden="true">+</span>
+          </span>
+        </button>
+        <button class="photo-card normal" type="button" data-gallery="anadia">
+          <img
+            src="fotos/anadia/IMG_3171.JPG"
+            alt="Sports photography from Anadia"
+            loading="lazy"
+          >
+          <span class="photo-info">
+            <span class="photo-meta">
+              <span class="photo-cat">Sports</span>
+              <span class="photo-name">Anadia</span>
+              <span class="photo-year">2025</span>
+            </span>
+            <span class="photo-open" aria-hidden="true">+</span>
+          </span>
+        </button>
+        <button class="photo-card normal" type="button" data-gallery="malta">
+          <img
+            src="fotos/malta/IMG_5990.jpeg"
+            alt="Travel portrait in Malta"
+            loading="lazy"
+          >
+          <span class="photo-info">
+            <span class="photo-meta">
+              <span class="photo-cat">Travel</span>
+              <span class="photo-name">Malta</span>
+              <span class="photo-year">2025</span>
+            </span>
+            <span class="photo-open" aria-hidden="true">+</span>
+          </span>
+        </button>
+        <button class="photo-card normal" type="button" data-gallery="acores">
+          <img
+            src="fotos/acores/IMG_2211.JPG"
+            alt="Landscape from the Azores"
+            loading="lazy"
+          >
+          <span class="photo-info">
+            <span class="photo-meta">
+              <span class="photo-cat">Landscapes</span>
+              <span class="photo-name">Azores</span>
+              <span class="photo-year">2025</span>
+            </span>
+            <span class="photo-open" aria-hidden="true">+</span>
+          </span>
+        </button>
+        <button class="photo-card normal" type="button" data-gallery="suecia">
+          <img
+            src="fotos/sweden/IMG_2712.jpeg"
+            alt="Travel photography in Sweden"
+            loading="lazy"
+          >
+          <span class="photo-info">
+            <span class="photo-meta">
+              <span class="photo-cat">Travel</span>
+              <span class="photo-name">Sweden</span>
+              <span class="photo-year">2026</span>
+            </span>
+            <span class="photo-open" aria-hidden="true">+</span>
+          </span>
+        </button>
+        <button class="photo-card normal" type="button" data-gallery="noruega">
+          <img
+            src="fotos/norway/IMG_8775.jpeg"
+            alt="Travel photography in Norway"
+            loading="lazy"
+          >
+          <span class="photo-info">
+            <span class="photo-meta">
+              <span class="photo-cat">Travel</span>
+              <span class="photo-name">Norway</span>
+              <span class="photo-year">2026</span>
+            </span>
+            <span class="photo-open" aria-hidden="true">+</span>
+          </span>
+        </button>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <section id="contacto">
+      <div class="section-wrap">
+        <div class="contact-grid">
+          <div class="reveal">
+            <p class="eyebrow">Contact</p>
+            <h2 class="sec-title">Let's<br>work together.</h2>
+            <p class="sec-body contact-copy">
+              Available for photo sessions, digital content, and marketing
+              strategy.
+            </p>
+          </div>
+          <div class="reveal rd2">
+            <div class="contact-fields">
+              <div class="contact-row">
+                <span class="contact-label">Email</span>
+                <a href="mailto:joottapedro@gmail.com" class="contact-val">
+                  joottapedro@gmail.com
+                </a>
+              </div>
+              <div class="contact-row">
+                <span class="contact-label">Phone</span>
+                <span class="contact-val">+351 926 989 163</span>
+              </div>
+              <div class="contact-row">
+                <span class="contact-label">Location</span>
+                <span class="contact-val">Aveiro, Portugal</span>
+              </div>
+              <div class="contact-row">
+                <span class="contact-label">Available</span>
+                <span class="contact-val status-available">Available</span>
+              </div>
+            </div>
+            <div class="contact-actions">
+              <a
+                href="https://wa.me/351926989163?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20informa%C3%A7%C3%B5es."
+                class="btn-dark"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Send Message
+              </a>
+              <a href="#" data-open-cv class="btn-dark">View CV</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© 2026 João Pereira</span>
+    <span>Aveiro, Portugal · Student & Freelancer</span>
+  </footer>
+
+  <div
+    class="gallery-overlay"
+    id="galleryOverlay"
+    aria-hidden="true"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="galTitle"
+  >
+    <div class="gal-header">
       <div>
-        <p class="eyebrow">Selected Project</p>
-        <h2 class="sec-title">Projects</h2>
+        <div class="gal-title" id="galTitle"></div>
+        <div class="gal-subtitle" id="galSub"></div>
       </div>
-      <p class="sec-body" style="max-width:300px;font-size:13px;">Click in each project to see photos and details.</p>
+      <button class="gal-close" type="button" aria-label="Close gallery" data-close-gallery>
+        ✕
+      </button>
     </div>
-    <div class="projects-list reveal">
-
-      <div class="project-row" onclick="toggleProject('p1')">
-        <span class="proj-num">01</span>
-        <div class="proj-info">
-          <span class="proj-name">Marketing Associate — Moovflex</span>
-          <span class="proj-desc">Content creation, client work, and support across different areas at Moov</span>
-        </div>
-        <div class="proj-tags">
-          <span class="proj-tag">StartUp</span>
-          <span class="proj-tag">Marketing</span>
-          <span class="proj-tag">UI UX</span>
-          <span class="proj-tag">Business Development</span>
-          <span class="proj-tag">2025–atual</span>
-        </div>
-        <span class="proj-arrow">→</span>
-      </div>
-      <div class="proj-panel" id="p1">
-        <p class="proj-panel-text">Responsible for producing photo and video content, assisting with projects, and contributing to the brand’s overall development.</p>
-        <div class="proj-panel-imgs">
-          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=85" alt="">
-          <img src="https://images.unsplash.com/photo-1529900748604-07564a03e7a6?w=600&q=85" alt="">
-          <img src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=600&q=85" alt="">
-        </div>
-      </div>
-
-      <div class="project-row" onclick="toggleProject('p2')">
-        <span class="proj-num">02</span>
-        <div class="proj-info">
-          <span class="proj-name">Marketing Intern — Biselarte</span>
-          <span class="proj-desc">Content creation, market research, and support across different areas.</span>
-        </div>
-        <div class="proj-tags">
-          <span class="proj-tag">Marketing</span>
-          <span class="proj-tag">Newsletter</span>
-          <span class="proj-tag">Content</span>
-          <span class="proj-tag">2025–2025</span>
-        </div>
-        <span class="proj-arrow">→</span>
-      </div>
-      <div class="proj-panel" id="p2">
-        <p class="proj-panel-text">Responsible for developing visual content, assisting with client communication, analyzing pricing and competitors, and supporting marketing activities.</p>
-        <div class="proj-panel-imgs">
-          <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=85" alt="">
-          <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?w=600&q=85" alt="">
-          <img src="https://images.unsplash.com/photo-1469285994282-454ceb49e63c?w=600&q=85" alt="">
-        </div>
-      </div>
-      
+    <div class="gal-stage">
+      <button
+        class="gal-btn gal-prev"
+        type="button"
+        aria-label="Previous photo"
+        data-gallery-step="-1"
+      >
+        ‹
+      </button>
+      <img id="galImg" src="" alt="">
+      <button
+        class="gal-btn gal-next"
+        type="button"
+        aria-label="Next photo"
+        data-gallery-step="1"
+      >
+        ›
+      </button>
+    </div>
+    <div class="gal-footer">
+      <span class="gal-counter" id="galCounter"></span>
+      <div class="gal-thumbs" id="galThumbs"></div>
     </div>
   </div>
-</section>
 
-<hr class="divider">
-
-<section id="fotografia">
-  <div class="section-wrap" style="padding-bottom:40px;">
-    <div class="reveal">
-      <p class="eyebrow">Photography Portfolio</p>
-      <h2 class="sec-title">Photo Sessions</h2>
-    </div>
-  </div>
-  <div class="photo-grid reveal">
-    <div class="photo-card span2 tall" onclick="openGallery('acores')">
-      <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1800&q=85" alt="Açores">
-      <div class="photo-info">
-        <div class="photo-meta"><span class="photo-cat">Landscapes</span><span class="photo-name">Azores</span><span class="photo-year">2025</span></div>
-        <button class="photo-open" onclick="event.stopPropagation();openGallery('acores')">+</button>
+  <div
+    class="cv-overlay"
+    id="cvOverlay"
+    aria-hidden="true"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="cvTitle"
+  >
+    <div class="cv-header">
+      <button class="cv-back" type="button" data-close-cv>
+        ← Back to Website
+      </button>
+      <div>
+        <span class="cv-title" id="cvTitle">Curriculum Vitae</span>
+        <p class="cv-subtitle">João Pereira · Photography · Marketing</p>
       </div>
     </div>
-    <div class="photo-card normal" onclick="openGallery('caramulo')">
-      <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=900&q=85" alt="Caramulo">
-      <div class="photo-info">
-        <div class="photo-meta"><span class="photo-cat">Cars</span><span class="photo-name">Caramulo</span><span class="photo-year">2025</span></div>
-        <button class="photo-open" onclick="event.stopPropagation();openGallery('caramulo')">+</button>
-      </div>
-    </div>
-    <div class="photo-card normal" onclick="openGallery('anadia')">
-      <img src="https://images.unsplash.com/photo-1529900748604-07564a03e7a6?w=900&q=85" alt="Anadia">
-      <div class="photo-info">
-        <div class="photo-meta"><span class="photo-cat">Sports</span><span class="photo-name">Anadia</span><span class="photo-year">2025</span></div>
-        <button class="photo-open" onclick="event.stopPropagation();openGallery('anadia')">+</button>
-      </div>
-    </div>
-    <div class="photo-card normal" onclick="openGallery('malta')">
-      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=85" alt="Malta">
-      <div class="photo-info">
-        <div class="photo-meta"><span class="photo-cat">Trip</span><span class="photo-name">Malta</span><span class="photo-year">2025</span></div>
-        <button class="photo-open" onclick="event.stopPropagation();openGallery('malta')">+</button>
-      </div>
-    </div>
-    <div class="photo-card normal" onclick="openGallery('suecia')">
-      <img src="https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=900&q=85" alt="Suécia">
-      <div class="photo-info">
-        <div class="photo-meta"><span class="photo-cat">Trip</span><span class="photo-name">Sweden</span><span class="photo-year">2026</span></div>
-        <button class="photo-open" onclick="event.stopPropagation();openGallery('suecia')">+</button>
-      </div>
-    </div>
-    <div class="photo-card normal" onclick="openGallery('noruega')">
-      <img src="https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=900&q=85" alt="Noruega">
-      <div class="photo-info">
-        <div class="photo-meta"><span class="photo-cat">Trip</span><span class="photo-name">Norway</span><span class="photo-year">2026</span></div>
-        <button class="photo-open" onclick="event.stopPropagation();openGallery('noruega')">+</button>
+    <div class="cv-layout">
+      <aside class="cv-sidebar">
+        <p class="cv-eyebrow">Professional Profile</p>
+        <h2 class="cv-heading">A clearer way to present experience, work, and skills.</h2>
+        <p class="cv-copy">
+          The CV stays here as a quick professional reference for photography,
+          digital content, and marketing opportunities.
+        </p>
+        <div class="cv-meta">
+          <div class="cv-meta-item">
+            <span class="cv-meta-label">Focus</span>
+            <span class="cv-meta-value">Photography, Digital Content, Marketing</span>
+          </div>
+          <div class="cv-meta-item">
+            <span class="cv-meta-label">Location</span>
+            <span class="cv-meta-value">Aveiro, Portugal</span>
+          </div>
+          <div class="cv-meta-item">
+            <span class="cv-meta-label">Format</span>
+            <span class="cv-meta-value">PDF preview and direct download</span>
+          </div>
+        </div>
+        <div class="cv-actions">
+          <a class="btn-dark" href="CV%20%2016032026.pdf" target="_blank" rel="noopener noreferrer">
+            Open PDF
+          </a>
+          <a class="btn-outline" href="CV%20%2016032026.pdf" download>
+            Download CV
+          </a>
+        </div>
+        <p class="cv-mobile-note">
+          On mobile, open the PDF directly for a smoother viewing experience.
+        </p>
+      </aside>
+      <div class="cv-preview">
+        <iframe
+          class="cv-frame"
+          src="CV%20%2016032026.pdf"
+          title="Curriculum Vitae of João Pereira"
+        ></iframe>
       </div>
     </div>
   </div>
-</section>
 
-<hr class="divider" style="margin-top:2px;">
-
-<section id="contacto">
-  <div class="section-wrap">
-    <div class="contact-grid">
-      <div class="reveal">
-        <p class="eyebrow">Contact</p>
-        <h2 class="sec-title">Lets<br>work together.</h2>
-        <p class="sec-body" style="margin-top:16px;">Available for photo sessions, digital content and arketing strategy.</p>
-      </div>
-      <div class="reveal rd2">
-        <div class="contact-fields">
-          <div class="contact-row"><span class="contact-label">E-mail</span><a href="mailto:joaopedrops@gmail.com" class="contact-val">joottapedro@gmail.com</a></div>
-          <div class="contact-row"><span class="contact-label">Phone</span><span class="contact-val">+351 926 989 163</span></div>
-          <div class="contact-row"><span class="contact-label">Location</span><span class="contact-val">Aveiro, Portugal</span></div>
-          <div class="contact-row"><span class="contact-label">Available</span><span class="contact-val" style="color:#34c759;">Available</span></div>
-        </div>
-        <div style="display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;">
-          <a href="mailto:joottapedro@gmail.com" class="btn-dark">Send message</a>
-          <a href="#" onclick="openCV();return false;" class="btn-dark">View CV</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <span>© 2026 João Pereira</span>
-  <span>Aveiro, Portugal · Student & Freelancer</span>
-</footer>
-
-<div class="gallery-overlay" id="galleryOverlay">
-  <div class="gal-header">
-    <div><div class="gal-title" id="galTitle"></div><div class="gal-subtitle" id="galSub"></div></div>
-    <button class="gal-close" onclick="closeGallery()">✕</button>
-  </div>
-  <div class="gal-stage">
-    <button class="gal-btn gal-prev" onclick="changePhoto(-1)">‹</button>
-    <img id="galImg" src="" alt="">
-    <button class="gal-btn gal-next" onclick="changePhoto(1)">›</button>
-  </div>
-  <div class="gal-footer">
-    <span class="gal-counter" id="galCounter"></span>
-    <div class="gal-thumbs" id="galThumbs"></div>
-  </div>
-</div>
-<!-- CV OVERLAY -->
-<div id="cvOverlay" style="position:fixed;inset:0;background:#fff;z-index:300;transform:translateX(100%);transition:transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94);display:flex;flex-direction:column;">
-  <div style="height:52px;display:flex;align-items:center;padding:0 32px;border-bottom:1px solid #e8e8ed;flex-shrink:0;gap:16px;">
-    <button onclick="closeCV()" style="display:flex;align-items:center;gap:8px;background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:13px;color:#6e6e73;">
-      ← Back to Website
-    </button>
-    <span style="font-size:12px;color:#d2d2d7;">|</span>
-    <span style="font-size:13px;color:#1d1d1f;">Curriculum Vitae — João Pereira</span>
-  </div>
-  <iframe src="CV  16032026.pdf" style="flex:1;border:none;width:100%;"></iframe>
-</div>
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

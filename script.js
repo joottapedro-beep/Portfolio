@@ -1,48 +1,293 @@
-document.addEventListener("DOMContentLoaded", function() {
+const galleries = {
+  acores: {
+    title: "Açores",
+    sub: "2025 · Landscapes",
+    coverAlt: "Landscape from the Azores",
+    photos: [
+      "fotos/acores/IMG_2211.JPG",
+      "fotos/acores/IMG_1109.JPG",
+      "fotos/acores/IMG_1252.JPG",
+      "fotos/acores/IMG_1748.JPG"
+    ]
+  },
+  caramulo: {
+    title: "Caramulo",
+    sub: "2025 · Cars",
+    coverAlt: "Car photography at Caramulo",
+    photos: [
+      "fotos/caramulo/IMG_4634%20(1).JPG",
+      "fotos/caramulo/IMG_4650.JPG",
+      "fotos/caramulo/IMG_4803.JPG",
+      "fotos/caramulo/IMG_4806.JPG",
+      "fotos/caramulo/IMG_4828.JPG",
+      "fotos/caramulo/IMG_4840.JPG",
+      "fotos/caramulo/IMG_4853.JPG",
+      "fotos/caramulo/IMG_4860.JPG",
+      "fotos/caramulo/IMG_4869%20(1).JPG"
+    ]
+  },
+  anadia: {
+    title: "Anadia",
+    sub: "2025 · Sports",
+    coverAlt: "Sports photography from Anadia",
+    photos: [
+      "https://images.unsplash.com/photo-1529900748604-07564a03e7a6?w=1400&q=90",
+      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1400&q=90",
+      "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=1400&q=90",
+      "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1400&q=90"
+    ]
+  },
+  malta: {
+    title: "Malta",
+    sub: "2025 · Travel",
+    coverAlt: "Travel portrait in Malta",
+    photos: [
+      "fotos/malta/IMG_5990.jpeg",
+      "fotos/malta/IMG_5927.JPG"
+    ]
+  },
+  suecia: {
+    title: "Sweden",
+    sub: "2026 · Travel",
+    coverAlt: "Travel photography in Sweden",
+    photos: [
+      "fotos/sweden/IMG_2712.jpeg",
+      "fotos/sweden/IMG_8248.jpeg",
+      "fotos/sweden/ft2.png"
+    ]
+  },
+  noruega: {
+    title: "Norway",
+    sub: "2026 · Travel",
+    coverAlt: "Travel photography in Norway",
+    photos: [
+      "fotos/norway/IMG_8775.jpeg",
+      "fotos/norway/IMG_0115.jpeg",
+      "fotos/norway/ft3.png"
+    ]
+  }
+};
 
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if(e.isIntersecting){
-        e.target.classList.add('visible');
-        obs.unobserve(e.target);
-      }
+let currentGallery = null;
+let currentIndex = 0;
+
+const overlayState = {
+  gallery: false,
+  cv: false
+};
+
+const galleryOverlay = document.getElementById("galleryOverlay");
+const cvOverlay = document.getElementById("cvOverlay");
+const galleryImage = document.getElementById("galImg");
+const galleryTitle = document.getElementById("galTitle");
+const gallerySubtitle = document.getElementById("galSub");
+const galleryCounter = document.getElementById("galCounter");
+const galleryThumbs = document.getElementById("galThumbs");
+
+function syncBodyScroll() {
+  const anyOverlayOpen = Object.values(overlayState).some(Boolean);
+  document.body.classList.toggle("overlay-open", anyOverlayOpen);
+}
+
+function setOverlayState(name, isOpen) {
+  overlayState[name] = isOpen;
+  syncBodyScroll();
+}
+
+function setupRevealObserver() {
+  const revealElements = document.querySelectorAll(".reveal");
+
+  if (!("IntersectionObserver" in window)) {
+    revealElements.forEach((element) => element.classList.add("visible"));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.08 }
+  );
+
+  revealElements.forEach((element) => observer.observe(element));
+}
+
+function toggleProject(targetId) {
+  const panels = document.querySelectorAll(".proj-panel");
+  const buttons = document.querySelectorAll("[data-project-target]");
+  const targetPanel = document.getElementById(targetId);
+  const targetButton = document.querySelector(`[data-project-target="${targetId}"]`);
+  const shouldOpen = targetPanel && targetPanel.hidden;
+
+  panels.forEach((panel) => {
+    panel.hidden = true;
+    panel.classList.remove("open");
+  });
+
+  buttons.forEach((button) => {
+    button.setAttribute("aria-expanded", "false");
+  });
+
+  if (shouldOpen && targetPanel && targetButton) {
+    targetPanel.hidden = false;
+    targetPanel.classList.add("open");
+    targetButton.setAttribute("aria-expanded", "true");
+  }
+}
+
+function renderGallery() {
+  if (!currentGallery) {
+    return;
+  }
+
+  const activeImageSrc = currentGallery.photos[currentIndex];
+
+  galleryTitle.textContent = currentGallery.title;
+  gallerySubtitle.textContent = currentGallery.sub;
+  galleryImage.style.opacity = "0";
+  galleryImage.src = activeImageSrc;
+  galleryImage.alt = `${currentGallery.coverAlt} (${currentIndex + 1}/${currentGallery.photos.length})`;
+  galleryImage.onload = () => {
+    galleryImage.style.opacity = "1";
+  };
+  galleryCounter.textContent = `${currentIndex + 1} de ${currentGallery.photos.length}`;
+  galleryThumbs.innerHTML = "";
+
+  currentGallery.photos.forEach((src, index) => {
+    const thumbButton = document.createElement("button");
+    thumbButton.type = "button";
+    thumbButton.className = `g-thumb${index === currentIndex ? " active" : ""}`;
+    thumbButton.setAttribute(
+      "aria-label",
+      `Open photo ${index + 1} from ${currentGallery.title}`
+    );
+
+    const thumbImage = document.createElement("img");
+    thumbImage.src = src;
+    thumbImage.alt = "";
+    thumbImage.loading = "lazy";
+
+    thumbButton.appendChild(thumbImage);
+    thumbButton.addEventListener("click", () => {
+      currentIndex = index;
+      renderGallery();
     });
-  }, { threshold: 0.08 });
 
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    galleryThumbs.appendChild(thumbButton);
+  });
+}
 
+function openGallery(key) {
+  if (!galleries[key]) {
+    return;
+  }
+
+  currentGallery = galleries[key];
+  currentIndex = 0;
+  renderGallery();
+  galleryOverlay.classList.add("open");
+  galleryOverlay.setAttribute("aria-hidden", "false");
+  setOverlayState("gallery", true);
+}
+
+function closeGallery() {
+  galleryOverlay.classList.remove("open");
+  galleryOverlay.setAttribute("aria-hidden", "true");
+  setOverlayState("gallery", false);
+}
+
+function changePhoto(step) {
+  if (!currentGallery) {
+    return;
+  }
+
+  currentIndex =
+    (currentIndex + step + currentGallery.photos.length) %
+    currentGallery.photos.length;
+  renderGallery();
+}
+
+function openCV() {
+  cvOverlay.classList.add("open");
+  cvOverlay.setAttribute("aria-hidden", "false");
+  setOverlayState("cv", true);
+}
+
+function closeCV() {
+  cvOverlay.classList.remove("open");
+  cvOverlay.setAttribute("aria-hidden", "true");
+  setOverlayState("cv", false);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  setupRevealObserver();
+
+  document.querySelectorAll("[data-project-target]").forEach((button) => {
+    button.addEventListener("click", () => {
+      toggleProject(button.dataset.projectTarget);
+    });
+  });
+
+  document.querySelectorAll("[data-gallery]").forEach((button) => {
+    button.addEventListener("click", () => {
+      openGallery(button.dataset.gallery);
+    });
+  });
+
+  document.querySelectorAll("[data-open-cv]").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      openCV();
+    });
+  });
+
+  document.querySelectorAll("[data-close-gallery]").forEach((button) => {
+    button.addEventListener("click", closeGallery);
+  });
+
+  document.querySelectorAll("[data-close-cv]").forEach((button) => {
+    button.addEventListener("click", closeCV);
+  });
+
+  document.querySelectorAll("[data-gallery-step]").forEach((button) => {
+    button.addEventListener("click", () => {
+      changePhoto(Number(button.dataset.galleryStep));
+    });
+  });
+
+  galleryOverlay.addEventListener("click", (event) => {
+    if (event.target === galleryOverlay) {
+      closeGallery();
+    }
+  });
 });
 
-function toggleProject(id){
-  const p=document.getElementById(id);
-  const open=p.classList.contains('open');
-  document.querySelectorAll('.proj-panel').forEach(x=>x.classList.remove('open'));
-  if(!open) p.classList.add('open');
-}
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    if (overlayState.gallery) {
+      closeGallery();
+      return;
+    }
 
-const galleries={
-  acores:{title:"Açores",sub:"2025 · Paisagem",photos:["https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1400&q=90","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=90","https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=1400&q=90","https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1400&q=90","https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1400&q=90"]},
-  caramulo:{title:"Caramulo",sub:"2025 · Automóveis",photos:["https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1400&q=90","https://images.unsplash.com/photo-1469285994282-454ceb49e63c?w=1400&q=90","https://images.unsplash.com/photo-1502877338535-766e1452684a?w=1400&q=90","https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=1400&q=90"]},
-  anadia:{title:"Anadia",sub:"2025 · Desporto",photos:["https://images.unsplash.com/photo-1529900748604-07564a03e7a6?w=1400&q=90","https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1400&q=90","https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=1400&q=90","https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1400&q=90"]},
-  malta:{title:"Malta",sub:"2025 · Viagens",photos:["https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1400&q=90","https://images.unsplash.com/photo-1555993539-1732b0258235?w=1400&q=90","https://images.unsplash.com/photo-1534430480872-3498386e7856?w=1400&q=90","https://images.unsplash.com/photo-1520637836862-4d197d17c93a?w=1400&q=90"]},
-  suecia:{title:"Suécia",sub:"2026 · Viagens",photos:["https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=1400&q=90","https://images.unsplash.com/photo-1516108317508-6788f6a160e4?w=1400&q=90","https://images.unsplash.com/photo-1531436107035-30bb9e62e3e6?w=1400&q=90","https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=1400&q=90"]},
-  noruega:{title:"Noruega",sub:"2026 · Viagens",photos:["https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1400&q=90","https://images.unsplash.com/photo-1520769945061-0a448c463865?w=1400&q=90","https://images.unsplash.com/photo-1504197885937-0b0f35462380?w=1400&q=90","https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=1400&q=90"]}
-};
-let cur=null,idx=0;
-function openGallery(key){cur=galleries[key];idx=0;document.getElementById('galTitle').textContent=cur.title;document.getElementById('galSub').textContent=cur.sub;render();document.getElementById('galleryOverlay').classList.add('open');document.body.style.overflow='hidden';}
-function closeGallery(){document.getElementById('galleryOverlay').classList.remove('open');document.body.style.overflow='';}
-function render(){const img=document.getElementById('galImg');img.style.opacity=0;img.src=cur.photos[idx];img.onload=()=>img.style.opacity=1;document.getElementById('galCounter').textContent=(idx+1)+' de '+cur.photos.length;const th=document.getElementById('galThumbs');th.innerHTML='';cur.photos.forEach((src,i)=>{const t=document.createElement('img');t.src=src;t.className='g-thumb'+(i===idx?' active':'');t.onclick=()=>{idx=i;render();};th.appendChild(t);});}
-function changePhoto(d){idx=(idx+d+cur.photos.length)%cur.photos.length;render();}
-document.addEventListener('keydown',e=>{if(!document.getElementById('galleryOverlay').classList.contains('open'))return;if(e.key==='ArrowRight')changePhoto(1);if(e.key==='ArrowLeft')changePhoto(-1);if(e.key==='Escape')closeGallery();});
+    if (overlayState.cv) {
+      closeCV();
+    }
+  }
 
-function openCV(){
-  document.getElementById('cvOverlay').style.transform='translateX(0)';
-  document.body.style.overflow='hidden';
-}
-function closeCV(){
-  document.getElementById('cvOverlay').style.transform='translateX(100%)';
-  document.body.style.overflow='';
-}
-document.addEventListener('keydown',function(e){
-  if(e.key==='Escape') closeCV();
+  if (!overlayState.gallery) {
+    return;
+  }
+
+  if (event.key === "ArrowRight") {
+    changePhoto(1);
+  }
+
+  if (event.key === "ArrowLeft") {
+    changePhoto(-1);
+  }
 });
