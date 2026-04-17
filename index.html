@@ -6,7 +6,7 @@
   <title>João Pereira</title>
   <meta
     name="description"
-    content="João Pereira's portfolio featuring photography, projects, and contact information."
+    content="João Pereira's portfolio featuring photography, experience, and contact information."
   >
   <link rel="icon" type="image/png" sizes="32x32" href="logoJP_3.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +22,7 @@
     <a href="#" class="logo">João Pereira</a>
     <nav aria-label="Main navigation">
       <a href="#sobre">About</a>
-      <a href="#projetos">Projects</a>
+      <a href="#projetos">Experience</a>
       <a href="#fotografia">Photography</a>
       <a href="#contacto">Contact</a>
       <a href="#" data-open-cv class="nav-cv">CV</a>
@@ -49,7 +49,7 @@
           </p>
           <div class="hero-actions">
             <a href="#fotografia" class="btn-dark">View Photography</a>
-            <a href="#projetos" class="btn-outline">View Projects</a>
+            <a href="#projetos" class="btn-outline">View Experience</a>
           </div>
         </div>
       </div>
@@ -64,7 +64,7 @@
           <div class="reveal">
             <img
               class="about-img"
-              src="fotos/profile/IMG_1069.jpeg"
+              src="fotos-web/profile/IMG_1069.jpg"
               alt="Portrait of João Pereira"
               loading="lazy"
             >
@@ -89,12 +89,8 @@
             </div>
             <div class="about-stats" aria-label="Experience highlights">
               <div class="stat-cell">
-                <div class="stat-n">6+</div>
+                <div class="stat-n">9+</div>
                 <div class="stat-l">Photo Sessions</div>
-              </div>
-              <div class="stat-cell">
-                <div class="stat-n">4</div>
-                <div class="stat-l">Countries</div>
               </div>
               <div class="stat-cell">
                 <div class="stat-n">2</div>
@@ -116,11 +112,11 @@
       <div class="section-wrap">
         <div class="projects-header reveal">
           <div>
-            <p class="eyebrow">Selected Projects</p>
-            <h2 class="sec-title">Projects</h2>
+            <p class="eyebrow">Selected Experience</p>
+            <h2 class="sec-title">Experience</h2>
           </div>
           <p class="sec-body projects-copy">
-            Click on each project to see photos and details.
+            Click on each role to see photos and details.
           </p>
         </div>
         <div class="projects-list reveal">
@@ -139,7 +135,7 @@
                 areas at Moov.
               </span>
             </span>
-            <span class="proj-tags" aria-label="Project tags">
+            <span class="proj-tags" aria-label="Experience tags">
               <span class="proj-tag">Startup</span>
               <span class="proj-tag">Marketing</span>
               <span class="proj-tag">UI/UX</span>
@@ -151,7 +147,7 @@
           <div class="proj-panel" id="p1" hidden>
             <p class="proj-panel-text">
               Responsible for producing photo and video content, assisting with
-              projects, and contributing to the brand's overall development.
+              client work, and contributing to the brand's overall development.
             </p>
             <div class="proj-panel-imgs">
               <img
@@ -187,7 +183,7 @@
                 areas.
               </span>
             </span>
-            <span class="proj-tags" aria-label="Project tags">
+            <span class="proj-tags" aria-label="Experience tags">
               <span class="proj-tag">Marketing</span>
               <span class="proj-tag">Newsletter</span>
               <span class="proj-tag">Content</span>
@@ -203,7 +199,7 @@
             </p>
             <div class="proj-panel-imgs">
               <img
-                src="fotos/biselarte/ft1.JPG"
+                src="fotos-web/work/biselarte/ft1.jpg"
                 alt="Visual content developed during the Biselarte internship"
                 loading="lazy"
               >
@@ -230,42 +226,24 @@
         <div class="reveal">
           <p class="eyebrow">Photography Portfolio</p>
           <h2 class="sec-title">Photo Sessions</h2>
+          <p class="sec-body photo-intro">
+            Personal travel stories and commissioned work are separated so each
+            side of the portfolio has its own space.
+          </p>
+          <div class="photo-tabs" aria-label="Choose photography category">
+            <button class="photo-tab" type="button" data-photo-filter="personal" aria-pressed="false">
+              Personal / Travel
+            </button>
+            <button class="photo-tab" type="button" data-photo-filter="work" aria-pressed="false">
+              Work / Events
+            </button>
+          </div>
         </div>
       </div>
-      <div class="photo-grid reveal">
-        <button class="photo-card normal" type="button" data-gallery="caramulo">
+      <div class="photo-grid reveal" data-photo-curtain hidden>
+        <button class="photo-card normal" type="button" data-gallery="malta" data-photo-group="personal" hidden>
           <img
-            src="fotos/caramulo/IMG_4634%20(1).JPG"
-            alt="Car photography at Caramulo"
-            loading="lazy"
-          >
-          <span class="photo-info">
-            <span class="photo-meta">
-              <span class="photo-cat">Cars</span>
-              <span class="photo-name">Caramulo</span>
-              <span class="photo-year">2025</span>
-            </span>
-            <span class="photo-open" aria-hidden="true">+</span>
-          </span>
-        </button>
-        <button class="photo-card normal" type="button" data-gallery="anadia">
-          <img
-            src="fotos/anadia/IMG_3171.JPG"
-            alt="Sports photography from Anadia"
-            loading="lazy"
-          >
-          <span class="photo-info">
-            <span class="photo-meta">
-              <span class="photo-cat">Sports</span>
-              <span class="photo-name">Anadia</span>
-              <span class="photo-year">2025</span>
-            </span>
-            <span class="photo-open" aria-hidden="true">+</span>
-          </span>
-        </button>
-        <button class="photo-card normal" type="button" data-gallery="malta">
-          <img
-            src="fotos/malta/IMG_5990.jpeg"
+            data-src="fotos-web/personal/malta/IMG_5990.jpg"
             alt="Travel portrait in Malta"
             loading="lazy"
           >
@@ -278,9 +256,9 @@
             <span class="photo-open" aria-hidden="true">+</span>
           </span>
         </button>
-        <button class="photo-card normal" type="button" data-gallery="acores">
+        <button class="photo-card normal" type="button" data-gallery="acores" data-photo-group="personal" hidden>
           <img
-            src="fotos/acores/IMG_2211.JPG"
+            data-src="fotos-web/personal/acores/IMG_2211.jpg"
             alt="Landscape from the Azores"
             loading="lazy"
           >
@@ -293,9 +271,9 @@
             <span class="photo-open" aria-hidden="true">+</span>
           </span>
         </button>
-        <button class="photo-card normal" type="button" data-gallery="suecia">
+        <button class="photo-card normal" type="button" data-gallery="suecia" data-photo-group="personal" hidden>
           <img
-            src="fotos/sweden/IMG_2712.jpeg"
+            data-src="fotos-web/personal/sweden/IMG_8248.jpg"
             alt="Travel photography in Sweden"
             loading="lazy"
           >
@@ -308,9 +286,9 @@
             <span class="photo-open" aria-hidden="true">+</span>
           </span>
         </button>
-        <button class="photo-card normal" type="button" data-gallery="noruega">
+        <button class="photo-card normal" type="button" data-gallery="noruega" data-photo-group="personal" hidden>
           <img
-            src="fotos/norway/IMG_8775.jpeg"
+            data-src="fotos-web/personal/norway/IMG_8775.jpg"
             alt="Travel photography in Norway"
             loading="lazy"
           >
@@ -319,6 +297,36 @@
               <span class="photo-cat">Travel</span>
               <span class="photo-name">Norway</span>
               <span class="photo-year">2026</span>
+            </span>
+            <span class="photo-open" aria-hidden="true">+</span>
+          </span>
+        </button>
+        <button class="photo-card normal" type="button" data-gallery="caramulo" data-photo-group="work" hidden>
+          <img
+            data-src="fotos-web/work/caramulo/IMG_4634%20(1).jpg"
+            alt="Car photography at Caramulo"
+            loading="lazy"
+          >
+          <span class="photo-info">
+            <span class="photo-meta">
+              <span class="photo-cat">Cars</span>
+              <span class="photo-name">Caramulo</span>
+              <span class="photo-year">2025</span>
+            </span>
+            <span class="photo-open" aria-hidden="true">+</span>
+          </span>
+        </button>
+        <button class="photo-card normal" type="button" data-gallery="anadia" data-photo-group="work" hidden>
+          <img
+            data-src="fotos-web/work/anadia/IMG_3171.jpg"
+            alt="Sports photography from Anadia"
+            loading="lazy"
+          >
+          <span class="photo-info">
+            <span class="photo-meta">
+              <span class="photo-cat">Sports</span>
+              <span class="photo-name">Anadia</span>
+              <span class="photo-year">2025</span>
             </span>
             <span class="photo-open" aria-hidden="true">+</span>
           </span>

@@ -4,10 +4,10 @@ const galleries = {
     sub: "2025 · Landscapes",
     coverAlt: "Landscape from the Azores",
     photos: [
-      "fotos/acores/IMG_2211.JPG",
-      "fotos/acores/IMG_1109.JPG",
-      "fotos/acores/IMG_1252.JPG",
-      "fotos/acores/IMG_1748.JPG"
+      "fotos-web/personal/acores/IMG_2211.jpg",
+      "fotos-web/personal/acores/IMG_1109.jpg",
+      "fotos-web/personal/acores/IMG_1252.jpg",
+      "fotos-web/personal/acores/IMG_1748.jpg"
     ]
   },
   caramulo: {
@@ -15,15 +15,15 @@ const galleries = {
     sub: "2025 · Cars",
     coverAlt: "Car photography at Caramulo",
     photos: [
-      "fotos/caramulo/IMG_4634%20(1).JPG",
-      "fotos/caramulo/IMG_4650.JPG",
-      "fotos/caramulo/IMG_4803.JPG",
-      "fotos/caramulo/IMG_4806.JPG",
-      "fotos/caramulo/IMG_4828.JPG",
-      "fotos/caramulo/IMG_4840.JPG",
-      "fotos/caramulo/IMG_4853.JPG",
-      "fotos/caramulo/IMG_4860.JPG",
-      "fotos/caramulo/IMG_4869%20(1).JPG"
+      "fotos-web/work/caramulo/IMG_4634%20(1).jpg",
+      "fotos-web/work/caramulo/IMG_4650.jpg",
+      "fotos-web/work/caramulo/IMG_4803.jpg",
+      "fotos-web/work/caramulo/IMG_4806.jpg",
+      "fotos-web/work/caramulo/IMG_4828.jpg",
+      "fotos-web/work/caramulo/IMG_4840.jpg",
+      "fotos-web/work/caramulo/IMG_4853.jpg",
+      "fotos-web/work/caramulo/IMG_4860.jpg",
+      "fotos-web/work/caramulo/IMG_4869%20(1).jpg"
     ]
   },
   anadia: {
@@ -31,10 +31,7 @@ const galleries = {
     sub: "2025 · Sports",
     coverAlt: "Sports photography from Anadia",
     photos: [
-      "https://images.unsplash.com/photo-1529900748604-07564a03e7a6?w=1400&q=90",
-      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1400&q=90",
-      "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=1400&q=90",
-      "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1400&q=90"
+      "fotos-web/work/anadia/IMG_3171.jpg"
     ]
   },
   malta: {
@@ -42,8 +39,8 @@ const galleries = {
     sub: "2025 · Travel",
     coverAlt: "Travel portrait in Malta",
     photos: [
-      "fotos/malta/IMG_5990.jpeg",
-      "fotos/malta/IMG_5927.JPG"
+      "fotos-web/personal/malta/IMG_5990.jpg",
+      "fotos-web/personal/malta/IMG_5927.jpg"
     ]
   },
   suecia: {
@@ -51,9 +48,8 @@ const galleries = {
     sub: "2026 · Travel",
     coverAlt: "Travel photography in Sweden",
     photos: [
-      "fotos/sweden/IMG_2712.jpeg",
-      "fotos/sweden/IMG_8248.jpeg",
-      "fotos/sweden/ft2.png"
+      "fotos-web/personal/sweden/IMG_8248.jpg",
+      "fotos-web/personal/sweden/ft2.jpg"
     ]
   },
   noruega: {
@@ -61,15 +57,16 @@ const galleries = {
     sub: "2026 · Travel",
     coverAlt: "Travel photography in Norway",
     photos: [
-      "fotos/norway/IMG_8775.jpeg",
-      "fotos/norway/IMG_0115.jpeg",
-      "fotos/norway/ft3.png"
+      "fotos-web/personal/norway/IMG_8775.jpg",
+      "fotos-web/personal/norway/IMG_0115.jpg",
+      "fotos-web/personal/norway/ft3.jpg"
     ]
   }
 };
 
 let currentGallery = null;
 let currentIndex = 0;
+let galleryRenderToken = 0;
 
 const overlayState = {
   gallery: false,
@@ -83,6 +80,7 @@ const galleryTitle = document.getElementById("galTitle");
 const gallerySubtitle = document.getElementById("galSub");
 const galleryCounter = document.getElementById("galCounter");
 const galleryThumbs = document.getElementById("galThumbs");
+const galleryStage = document.querySelector(".gal-stage");
 
 function syncBodyScroll() {
   const anyOverlayOpen = Object.values(overlayState).some(Boolean);
@@ -117,6 +115,53 @@ function setupRevealObserver() {
   revealElements.forEach((element) => observer.observe(element));
 }
 
+function setupPhotoFilters() {
+  const filterButtons = document.querySelectorAll("[data-photo-filter]");
+  const photoCards = document.querySelectorAll("[data-photo-group]");
+  const photoCurtain = document.querySelector("[data-photo-curtain]");
+
+  function loadCardImage(card) {
+    const image = card.querySelector("img[data-src]");
+
+    if (!image) {
+      return;
+    }
+
+    image.src = image.dataset.src;
+    image.removeAttribute("data-src");
+  }
+
+  function showGroup(group) {
+    if (photoCurtain) {
+      photoCurtain.hidden = false;
+      requestAnimationFrame(() => {
+        photoCurtain.classList.add("open");
+      });
+    }
+
+    filterButtons.forEach((button) => {
+      const isActive = button.dataset.photoFilter === group;
+      button.classList.toggle("active", isActive);
+      button.setAttribute("aria-pressed", String(isActive));
+    });
+
+    photoCards.forEach((card) => {
+      const shouldShow = card.dataset.photoGroup === group;
+      card.hidden = !shouldShow;
+
+      if (shouldShow) {
+        loadCardImage(card);
+      }
+    });
+  }
+
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      showGroup(button.dataset.photoFilter);
+    });
+  });
+}
+
 function toggleProject(targetId) {
   const panels = document.querySelectorAll(".proj-panel");
   const buttons = document.querySelectorAll("[data-project-target]");
@@ -140,22 +185,62 @@ function toggleProject(targetId) {
   }
 }
 
+function thumbFromPhoto(src) {
+  return src.replace("fotos-web/", "fotos-thumb/").replace(/\.(jpeg|jpg|png)$/i, ".jpg");
+}
+
+function preloadPhoto(src) {
+  const image = new Image();
+  image.src = src;
+}
+
+function preloadNearbyPhotos() {
+  if (!currentGallery || currentGallery.photos.length < 2) {
+    return;
+  }
+
+  const previousIndex =
+    (currentIndex - 1 + currentGallery.photos.length) % currentGallery.photos.length;
+  const nextIndex = (currentIndex + 1) % currentGallery.photos.length;
+
+  preloadPhoto(currentGallery.photos[previousIndex]);
+  preloadPhoto(currentGallery.photos[nextIndex]);
+}
+
 function renderGallery() {
   if (!currentGallery) {
     return;
   }
 
   const activeImageSrc = currentGallery.photos[currentIndex];
+  const renderToken = galleryRenderToken + 1;
+  galleryRenderToken = renderToken;
 
   galleryTitle.textContent = currentGallery.title;
   gallerySubtitle.textContent = currentGallery.sub;
-  galleryImage.style.opacity = "0";
-  galleryImage.src = activeImageSrc;
   galleryImage.alt = `${currentGallery.coverAlt} (${currentIndex + 1}/${currentGallery.photos.length})`;
-  galleryImage.onload = () => {
+  galleryCounter.textContent = `${currentIndex + 1} / ${currentGallery.photos.length}`;
+  galleryStage.classList.add("loading");
+  galleryImage.style.opacity = "0";
+
+  const nextImage = new Image();
+  nextImage.onload = () => {
+    if (renderToken !== galleryRenderToken) {
+      return;
+    }
+
+    galleryImage.src = activeImageSrc;
     galleryImage.style.opacity = "1";
+    galleryStage.classList.remove("loading");
+    preloadNearbyPhotos();
   };
-  galleryCounter.textContent = `${currentIndex + 1} de ${currentGallery.photos.length}`;
+  nextImage.onerror = () => {
+    if (renderToken === galleryRenderToken) {
+      galleryStage.classList.remove("loading");
+    }
+  };
+  nextImage.src = activeImageSrc;
+
   galleryThumbs.innerHTML = "";
 
   currentGallery.photos.forEach((src, index) => {
@@ -168,9 +253,10 @@ function renderGallery() {
     );
 
     const thumbImage = document.createElement("img");
-    thumbImage.src = src;
+    thumbImage.src = thumbFromPhoto(src);
     thumbImage.alt = "";
-    thumbImage.loading = "lazy";
+    thumbImage.loading = "eager";
+    thumbImage.decoding = "async";
 
     thumbButton.appendChild(thumbImage);
     thumbButton.addEventListener("click", () => {
@@ -226,6 +312,7 @@ function closeCV() {
 
 document.addEventListener("DOMContentLoaded", () => {
   setupRevealObserver();
+  setupPhotoFilters();
 
   document.querySelectorAll("[data-project-target]").forEach((button) => {
     button.addEventListener("click", () => {
