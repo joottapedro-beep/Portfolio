@@ -777,6 +777,7 @@ hr.divider {
   position: relative;
   padding: 30px 88px;
   min-height: 0;
+  touch-action: pan-y;
 }
 
 .gal-stage.loading::after {
@@ -798,6 +799,10 @@ hr.divider {
   transition: opacity 0.25s, transform 0.35s ease;
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
   background: rgba(255, 255, 255, 0.04);
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .gal-btn {

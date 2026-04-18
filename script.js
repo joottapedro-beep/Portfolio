@@ -67,6 +67,7 @@ const galleries = {
 let currentGallery = null;
 let currentIndex = 0;
 let galleryRenderToken = 0;
+let lastGalleryTouchEnd = 0;
 
 const overlayState = {
   gallery: false,
@@ -81,6 +82,8 @@ const gallerySubtitle = document.getElementById("galSub");
 const galleryCounter = document.getElementById("galCounter");
 const galleryThumbs = document.getElementById("galThumbs");
 const galleryStage = document.querySelector(".gal-stage");
+const viewportMeta = document.getElementById("viewportMeta");
+const defaultViewportContent = viewportMeta ? viewportMeta.getAttribute("content") : "";
 
 function syncBodyScroll() {
   const anyOverlayOpen = Object.values(overlayState).some(Boolean);
@@ -90,6 +93,33 @@ function syncBodyScroll() {
 function setOverlayState(name, isOpen) {
   overlayState[name] = isOpen;
   syncBodyScroll();
+}
+
+function lockGalleryViewport(isLocked) {
+  if (!viewportMeta) {
+    return;
+  }
+
+  viewportMeta.setAttribute(
+    "content",
+    isLocked
+      ? "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+      : defaultViewportContent
+  );
+}
+
+function preventGalleryDoubleTapZoom(event) {
+  if (!overlayState.gallery) {
+    return;
+  }
+
+  const now = Date.now();
+
+  if (now - lastGalleryTouchEnd < 450) {
+    event.preventDefault();
+  }
+
+  lastGalleryTouchEnd = now;
 }
 
 function setupRevealObserver() {
@@ -288,12 +318,15 @@ function openGallery(key) {
   renderGallery();
   galleryOverlay.classList.add("open");
   galleryOverlay.setAttribute("aria-hidden", "false");
+  lastGalleryTouchEnd = 0;
+  lockGalleryViewport(true);
   setOverlayState("gallery", true);
 }
 
 function closeGallery() {
   galleryOverlay.classList.remove("open");
   galleryOverlay.setAttribute("aria-hidden", "true");
+  lockGalleryViewport(false);
   setOverlayState("gallery", false);
 }
 
@@ -382,6 +415,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (event.target === galleryOverlay) {
       closeGallery();
     }
+  });
+
+  galleryOverlay.addEventListener("dblclick", (event) => {
+    event.preventDefault();
+  });
+
+  galleryOverlay.addEventListener("touchend", preventGalleryDoubleTapZoom, {
+    capture: true,
+    passive: false
   });
 });
 
