@@ -259,10 +259,20 @@ function renderGallery() {
     thumbImage.decoding = "async";
 
     thumbButton.appendChild(thumbImage);
-    thumbButton.addEventListener("click", () => {
+    thumbButton.addEventListener("click", (event) => {
+      event.preventDefault();
       currentIndex = index;
       renderGallery();
     });
+    thumbButton.addEventListener(
+      "touchend",
+      (event) => {
+        event.preventDefault();
+        currentIndex = index;
+        renderGallery();
+      },
+      { passive: false }
+    );
 
     galleryThumbs.appendChild(thumbButton);
   });
@@ -334,7 +344,18 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.querySelectorAll("[data-close-gallery]").forEach((button) => {
-    button.addEventListener("click", closeGallery);
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      closeGallery();
+    });
+    button.addEventListener(
+      "touchend",
+      (event) => {
+        event.preventDefault();
+        closeGallery();
+      },
+      { passive: false }
+    );
   });
 
   document.querySelectorAll("[data-close-cv]").forEach((button) => {
@@ -342,9 +363,19 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.querySelectorAll("[data-gallery-step]").forEach((button) => {
-    button.addEventListener("click", () => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
       changePhoto(Number(button.dataset.galleryStep));
     });
+
+    button.addEventListener(
+      "touchend",
+      (event) => {
+        event.preventDefault();
+        changePhoto(Number(button.dataset.galleryStep));
+      },
+      { passive: false }
+    );
   });
 
   galleryOverlay.addEventListener("click", (event) => {

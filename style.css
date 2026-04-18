@@ -708,6 +708,9 @@ hr.divider {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s;
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .gallery-overlay.open {
@@ -755,6 +758,10 @@ hr.divider {
   align-items: center;
   justify-content: center;
   transition: background 0.2s;
+  touch-action: manipulation;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .gal-close:hover {
@@ -809,6 +816,10 @@ hr.divider {
   align-items: center;
   justify-content: center;
   transition: background 0.2s;
+  touch-action: manipulation;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .gal-btn:hover {
@@ -866,6 +877,10 @@ hr.divider {
   background: transparent;
   padding: 0;
   overflow: hidden;
+  touch-action: manipulation;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .g-thumb img {
